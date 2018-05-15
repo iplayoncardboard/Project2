@@ -6,5 +6,10 @@ router.get("/", (req, res) => {
     res.render("index");
 });
 
+router.get("/play", (req, res) => {
+    res.render("play");
+});
+
+
 
 module.exports = router;
