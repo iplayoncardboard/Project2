@@ -12,5 +12,10 @@ router.get('/register', (req, res)=> {
 });
 
 router.post
+router.get("/play", (req, res) => {
+    res.render("play");
+});
+
+
 
 module.exports = router;
