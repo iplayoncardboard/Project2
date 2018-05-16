@@ -8,3 +8,4 @@ CREATE TABLE user(
     user_name VARCHAR(100),
     pw_hash VARCHAR(255)
 );
+
