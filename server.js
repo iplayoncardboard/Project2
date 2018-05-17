@@ -11,8 +11,6 @@ const app = express();
 
 
 //setup express session
-//WhatThoz30rBsDoTho???
-console.log(process.env.SESSION_SECRET);
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: process.env.SESSION_SECRET,
