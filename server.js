@@ -6,10 +6,9 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require('express-session');
 const PORT = process.env.PORT || 8080;
 const env = require('dotenv').config();
-
 const app = express();
 const db = require('./models');
-// const db = require(path.join(__dirname, "models"));
+
 
 //setup express session
 app.set('trust proxy', 1) // trust first proxy
