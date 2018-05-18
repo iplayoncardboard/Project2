@@ -1,4 +1,4 @@
-noCREATE DATABASE fablib_db;
+CREATE DATABASE fablib_db;
 
 USE fablib_db;
 
