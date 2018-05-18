@@ -1,13 +1,65 @@
 .nav-item {
-    font-size: 25px;
+  font-size: 25px;
 }
 .navbar-brand {
-    width: 100px;
+  width: 100px;
 }
+
+div,
 body {
-    height: 100vh;
-    background-image: url("/assets/images/gen_bkg.png");
-    background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: "Pangolin", cursive;
+  font-size: 25px;
+  color: black;
+}
+
+p.sleep1 {
+  font-family: "Pangolin", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+p.sleep2 {
+  font-family: "Sunshiney", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+p.wedding {
+  font-family: "Parisienne", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+p.camp {
+  font-family: "Freckle Face", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+p.boys {
+  font-family: "Dokdo", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+p.baby1 {
+  font-family: "Butterfly Kids", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+p.baby2 {
+  font-family: "Life Savers", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+.footer {
+  text-align: center;
+  text-shadow: 1px 1px white;
+  color: black;
 }
 
 .wrapper {
