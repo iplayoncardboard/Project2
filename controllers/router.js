@@ -1,5 +1,5 @@
 const express = require("express");
-
+var User = require("../models/user");
 
 const router = express.Router();
 
@@ -12,11 +12,24 @@ router.get('/register', (req, res)=> {
 });
 
 router.post('/register', (req, res)=>{
-    console.log("GDFDSFDSFDSFDS");
-    console.log(req.body.user_name);
-    console.log(req.body.password);
-    console.log(req.body.password_compare);
-})
+    
+    let newUser = {
+        userName: req.body.user_name,
+        pw_hash: req.body.password
+    }
+    console.log(User);
+    // User.create(newUser).then((user)=>{
+    //     res.json(user);
+    // });
+
+});
+
+
+// app.post("/api/authors", function(req, res) {
+//     db.Author.create(req.body).then(function(dbAuthor) {
+//       res.json(dbAuthor);
+//     });
+//   });
 
 router.post
 router.get("/play", (req, res) => {

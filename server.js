@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
@@ -6,9 +7,9 @@ const session = require('express-session');
 const PORT = process.env.PORT || 8080;
 const env = require('dotenv').config();
 
-
 const app = express();
-
+// const db = require('./models');
+const db =path.join(__dirname, "models");
 
 //setup express session
 app.set('trust proxy', 1) // trust first proxy
@@ -18,6 +19,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: true }
 }));
+
 
 //Setup passport strategy the db. portion will have to be changed. 
 passport.use(new LocalStrategy(
@@ -71,7 +73,17 @@ let routes = require("./controllers/router");
 app.use(routes);
 
 // Start our server so that it can begin listening to client requests.
-app.listen(PORT, function() {
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
-});
+
+
+app.listen(PORT, () => {
+      console.log("Server listening on: http://localhost:" + PORT);
+    });
+
+    console.log("this is DB " + db);
+
+
+// db.sequelize.sync({ force: true }).then(() => {
+//   app.listen(PORT, () => {
+//     console.log("Server listening on: http://localhost:" + PORT);
+//   });
+// });

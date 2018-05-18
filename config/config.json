@@ -1,0 +1,22 @@
+{
+    "development": {
+      "username": "root",
+      "password": "Zero1013!",
+      "database": "fablib_db",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    }
+  }
+  
+
+
+//   {
+//     "development": {
+//       "username": "process.env.DB_USER",
+//       "password": "process.env.DB_PASS",
+//       "database": "fablib_db",
+//       "host": "process.env.DB_HOST",
+//       "dialect": "mysql"
+//     }
+//   }
+  
