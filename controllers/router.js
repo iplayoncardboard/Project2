@@ -60,16 +60,46 @@ router.get("/api/categories", function(req, res) {
     });
   });
 
+  //LIBS API
+router.get("/api/libs", function(req, res) {
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Post
+    Models.libs.findAll({
+     
+    }).then(function(dbLibs) {
+      res.json(dbLibs);
+    });
+  });
+
 //PLAY ROUTE
 router.get("/play", (req, res) => {
     res.render("play");
 });
 
 router.post('/play', (req, res)=>{
+    
     //Pick a Lib Matching the Category Selection
-    
-    
+   
+   Models.libs.findAll({
+    where: {
+        category_id: req.body.selectCategory
+    }
+  }).then((data)=>{
+      var madlibOptions = [];
+    res.json(data);  //DATA IS AN ARRAY
+    for (i=0;i<data.length;i++) {
+        madlibOptions.push(data[i].dataValues.id);
+    }
+    // console.log(madlibOptions);
+    var madlib = madlibOptions[Math.floor(Math.random()*madlibOptions.length)]; //THIS PICKS A RANDOM MADLIB FROM THE CATEGORY
+    //console.log(madlib);
+
+
+
+    //Push Entry Data to Database
     let newEntry = {
+    lib_id: madlib,
     word_1: req.body.word_1,
     word_2: req.body.word_2,
     word_3: req.body.word_3,
@@ -85,38 +115,31 @@ router.post('/play', (req, res)=>{
     word_13: req.body.word_13
     }
     
-    Models.entries.create(newEntry).then((entries)=>{
+     Models.entries.create(newEntry).then((entries)=>{
        //THIS SHOWS ENTRIES DATA
       // res.json(entries);
-
+     });
         //res.render("./partials/madlib")
 
         //THIS SHOWS MADLIB DATA
-        Models.libs.findOne({
-            where: {
-                id: 1
-            }
-          }).then((data)=>{
-            res.json(data); 
-            var phrases =[];
-            //phrases.push(data.dataValues);
+        // Models.libs.findOne({
+        //     where: {
+        //         id: 1
+        //     }
+        //   }).then((data)=>{
+        //     res.json(data); 
+        //     var phrases =[];
            
-             console.log(data.dataValues.phrase_1); //THIS LOGS PHASE 1
+        //      console.log(data.dataValues.phrase_1); //THIS LOGS PHASE 1
            
-          // console.log(phrases);
-          // console.log(phrases.phrase_1);
-          console.log(entries.dataValues.word_1); //THIS LOGS WORD 1
+          
+        //   console.log(entries.dataValues.word_1); //THIS LOGS WORD 1
 
 
-            //    var madlib = [];
-        //  madlib.push(data.word_1);
-        //  var words =[];
-        //     words.push(entries.phrase_1);
-        //     console.log(madlib,words);
-           // res.render("./partials/registrationForm")
+
            
-          });
-    });
+    //       });
+     });
         
     
 });
