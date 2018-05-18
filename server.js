@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 8080;
 const env = require('dotenv').config();
 
 const app = express();
-// const db = require('./models');
-const db =path.join(__dirname, "models");
+const db = require('./models');
+// const db = require(path.join(__dirname, "models"));
 
 //setup express session
 app.set('trust proxy', 1) // trust first proxy
@@ -75,15 +75,8 @@ app.use(routes);
 // Start our server so that it can begin listening to client requests.
 
 
-app.listen(PORT, () => {
-      console.log("Server listening on: http://localhost:" + PORT);
-    });
-
-    console.log("this is DB " + db);
-
-
-// db.sequelize.sync({ force: true }).then(() => {
-//   app.listen(PORT, () => {
-//     console.log("Server listening on: http://localhost:" + PORT);
-//   });
-// });
+db.sequelize.sync({ force: true }).then(() => {
+  app.listen(PORT, () => {
+    console.log("Server listening on: http://localhost:" + PORT);
+  });
+});

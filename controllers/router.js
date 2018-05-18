@@ -1,5 +1,5 @@
 const express = require("express");
-var User = require("../models/user");
+var Models = require("../models");
 
 const router = express.Router();
 
@@ -9,18 +9,19 @@ router.get("/", (req, res) => {
 
 router.get('/register', (req, res)=> {
     res.render("./partials/registrationForm")
+    console.log(Models);
 });
 
 router.post('/register', (req, res)=>{
     
     let newUser = {
-        userName: req.body.user_name,
+        user_name: req.body.user_name,
         pw_hash: req.body.password
     }
-    console.log(User);
-    // User.create(newUser).then((user)=>{
-    //     res.json(user);
-    // });
+    // console.log(User);
+    Models.user.create(newUser).then((user)=>{
+        res.json(user);
+    });
 
 });
 
