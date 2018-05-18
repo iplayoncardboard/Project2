@@ -1,6 +1,41 @@
 .nav-item {
-    font-size: 25px;
+  font-size: 25px;
 }
 .navbar-brand {
-    width: 100px;
+  width: 100px;
+}
+
+p.sleep1 {
+  font-family: "Pangolin", cursive;
+  font-size: 20px;
+}
+
+p.sleep2 {
+  font-family: "Sunshiney", cursive;
+  font-size: 20px;
+}
+
+p.wedding {
+  font-family: "Parisienne", cursive;
+  font-size: 20px;
+}
+
+p.camp {
+  font-family: "Freckle Face", cursive;
+  font-size: 20px;
+}
+
+p.boys {
+  font-family: "Dokdo", cursive;
+  font-size: 20px;
+}
+
+p.baby1 {
+  font-family: "Butterfly Kids", cursive;
+  font-size: 20px;
+}
+
+p.baby2 {
+  font-family: "Life Savers", cursive;
+  font-size: 20px;
 }
