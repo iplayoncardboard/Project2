@@ -87,7 +87,7 @@ router.post('/play', (req, res)=>{
     }
   }).then((data)=>{
       var madlibOptions = [];
-    res.json(data);  //DATA IS AN ARRAY
+    //res.json(data);  //DATA IS AN ARRAY
     for (i=0;i<data.length;i++) {
         madlibOptions.push(data[i].dataValues.id);
     }
@@ -95,55 +95,98 @@ router.post('/play', (req, res)=>{
     var madlib = madlibOptions[Math.floor(Math.random()*madlibOptions.length)]; //THIS PICKS A RANDOM MADLIB FROM THE CATEGORY
     //console.log(madlib);
 
-
-
     //Push Entry Data to Database
     let newEntry = {
-    lib_id: madlib,
-    word_1: req.body.word_1,
-    word_2: req.body.word_2,
-    word_3: req.body.word_3,
-    word_4: req.body.word_4,
-    word_5: req.body.word_5,
-    word_6: req.body.word_6,
-    word_7: req.body.word_7,
-    word_8: req.body.word_8,
-    word_9: req.body.word_9,
-    word_10: req.body.word_10,
-    word_11: req.body.word_11,
-    word_12: req.body.word_12,
-    word_13: req.body.word_13
+        lib_id: madlib,
+        word_1: req.body.word_1,
+        word_2: req.body.word_2,
+        word_3: req.body.word_3,
+        word_4: req.body.word_4,
+        word_5: req.body.word_5,
+        word_6: req.body.word_6,
+        word_7: req.body.word_7,
+        word_8: req.body.word_8,
+        word_9: req.body.word_9,
+        word_10: req.body.word_10,
+        word_11: req.body.word_11,
+        word_12: req.body.word_12,
+        word_13: req.body.word_13
     }
     
      Models.entries.create(newEntry).then((entries)=>{
        //THIS SHOWS ENTRIES DATA
       // res.json(entries);
-     });
-        //res.render("./partials/madlib")
 
-        //THIS SHOWS MADLIB DATA
-        // Models.libs.findOne({
-        //     where: {
-        //         id: 1
-        //     }
-        //   }).then((data)=>{
-        //     res.json(data); 
-        //     var phrases =[];
-           
-        //      console.log(data.dataValues.phrase_1); //THIS LOGS PHASE 1
+      //DISPLAY MADLIB + WORDS
+        Models.libs.findOne({
+            where: {
+                id: madlib
+            }
+          }).then((data)=>{
+            
+
+            var finalMadlib = []; 
+                finalMadlib.push(data.dataValues.phrase_1);
+                finalMadlib.push(entries.dataValues.word_1);
+                finalMadlib.push(data.dataValues.phrase_2);
+                finalMadlib.push(entries.dataValues.word_2);
+                finalMadlib.push(data.dataValues.phrase_3);
+                finalMadlib.push(entries.dataValues.word_3);
+                finalMadlib.push(data.dataValues.phrase_4);
+                finalMadlib.push(entries.dataValues.word_4);
+                finalMadlib.push(data.dataValues.phrase_5);
+                finalMadlib.push(entries.dataValues.word_5);
+                finalMadlib.push(data.dataValues.phrase_6);
+                finalMadlib.push(entries.dataValues.word_6);
+                finalMadlib.push(data.dataValues.phrase_7);
+                finalMadlib.push(entries.dataValues.word_7);
+                finalMadlib.push(data.dataValues.phrase_8);
+                finalMadlib.push(entries.dataValues.word_8);
+                finalMadlib.push(data.dataValues.phrase_9);
+                finalMadlib.push(entries.dataValues.word_9);
+                finalMadlib.push(data.dataValues.phrase_10);
+                finalMadlib.push(entries.dataValues.word_10);
+                finalMadlib.push(data.dataValues.phrase_11);
+                finalMadlib.push(entries.dataValues.word_11);
+                finalMadlib.push(data.dataValues.phrase_12);
+                finalMadlib.push(entries.dataValues.word_12);
+                finalMadlib.push(data.dataValues.phrase_13);
+                finalMadlib.push(entries.dataValues.word_13);
+                finalMadlib.push(data.dataValues.phrase_14);
+
+            
+            
+            console.log(finalMadlib);
+            
+          //Works once but doesn't reset with different plays, have to restart the server each time
+          //Try koining table on get instead of using array?
+            router.get("/api/currentlib", function(req, res) {
+                
+                res.json(finalMadlib);
+                
+                });
+              });
+              
+              res.render("./madlib");
+
+            // return finalMadlib;
+            //  console.log(data.dataValues.phrase_1); //THIS LOGS PHASE 1    
+            //     console.log(entries.dataValues.word_1); //THIS LOGS WORD 1
+            //     console.log(data.dataValues.phrase_2); //THIS LOGS PHASE 1    
+            //     console.log(entries.dataValues.word_2); //THIS LOGS WORD 1
+
+            
+ 
+        
+        
+
+
            
           
-        //   console.log(entries.dataValues.word_1); //THIS LOGS WORD 1
-
-
-
-           
-    //       });
      });
-        
+    });
     
 });
-
 
 
 

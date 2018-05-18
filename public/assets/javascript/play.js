@@ -1,6 +1,8 @@
-$(document).ready(function() {
-   
 
+
+$(document).ready(function() {
+   // var router = require("app.js");
+   // console.log(router.finalMadlib);
  //currently hard coded, should have it autopopulate options with categories (use get API route)
     $("#selectCategory").change(function(){
         // event.preventDefault();
@@ -14,7 +16,6 @@ $(document).ready(function() {
             $("#entries-form").show();
         }  
     });
-
 
 
       
