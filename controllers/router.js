@@ -33,9 +33,6 @@ router.get("/play", (req, res) => {
 
 router.post('/play', (req, res)=>{
     let newEntry = {
-        // user_name: req.body.user_name,
-        // pw_hash: req.body.password
-        
     word_1: req.body.word_1,
     word_2: req.body.word_2,
     word_3: req.body.word_3,
@@ -52,9 +49,32 @@ router.post('/play', (req, res)=>{
     }
     
     Models.entries.create(newEntry).then((entries)=>{
-        res.json(entries);
-    });
+       //THIS SHOWS ENTRIES DATA
+      // res.json(entries);
 
+        //res.render("./partials/madlib")
+
+        //THIS SHOWS MADLIB DATA
+        Models.libs.findOne({
+            where: {
+                id: 1
+            }
+          }).then((data)=>{
+            res.json(data); 
+
+
+
+            //    var madlib = [];
+        //  madlib.push(data.word_1);
+        //  var words =[];
+        //     words.push(entries.phrase_1);
+        //     console.log(madlib,words);
+           // res.render("./partials/registrationForm")
+           
+          });
+    });
+        
+    
 });
 
 
