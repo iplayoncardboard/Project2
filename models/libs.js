@@ -1,7 +1,7 @@
 
 module.exports = function(sequelize, DataTypes) {
     const Libs = sequelize.define("libs", {
-    
+      category_id: DataTypes.INTEGER,
       phrase_1: DataTypes.TEXT,
       phrase_2: DataTypes.TEXT,
       phrase_3: DataTypes.TEXT,

@@ -14,28 +14,32 @@ router.get('/register', (req, res)=> {
 });
 
 router.post('/register', (req, res)=>{
-//Looks for a duplicate username
+
     Models.user.findAll({
         where: {
             user_name: req.body.user_name
         }
       }).then((data)=>{
-          //if duplicate username is not found 
         if(data.length === 0){
-            //has and salt password
+
+
             bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
                 if(err){
                     console.log(err);
                 }
-                // Store username and hash in your password DB.
+                // Store hash in your password DB.
                 let newUser = {
                     user_name: req.body.user_name,
                     pw_hash: hash
                 }
                 Models.user.create(newUser).then((user)=>{
-                    res.redirect('/login')
+                    res.json(user);
                 });
             });
+          
+
+
+           
         }
         else {
             console.log("ERROR USER EXISTS")
@@ -43,40 +47,28 @@ router.post('/register', (req, res)=>{
       });
 });
 
-router.get('/login',(req,res)=>{
-    res.render('./partials/login');
-});
 
-router.post('/login',(req,res)=>{
-    lookup = {
-        user_name: req.body.user_name,
-        pw_hash: req.body.password
-    }
+//CATEGORY API
+router.get("/api/categories", function(req, res) {
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Post
+    Models.category.findAll({
+     
+    }).then(function(dbCategories) {
+      res.json(dbCategories);
+    });
+  });
 
-    Models.user.findOne({
-        where: {
-            user_name: req.body.user_name
-        }
-      }).then((data)=>{
-      
-          if(!data){
-              console.log("No User Found");
-          }
-          else{  bcrypt.compare(req.body.password, data.pw_hash, (err, res) =>{
-            // res == true
-            console.log("PASSWORD MATCH: "+ res)
-        });
-        }
-      });
-
-
-});
-
+//PLAY ROUTE
 router.get("/play", (req, res) => {
     res.render("play");
 });
 
 router.post('/play', (req, res)=>{
+    //Pick a Lib Matching the Category Selection
+    
+    
     let newEntry = {
     word_1: req.body.word_1,
     word_2: req.body.word_2,
