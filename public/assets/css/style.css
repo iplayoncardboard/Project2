@@ -9,3 +9,20 @@ body {
     background-image: url("/assets/images/gen_bkg.png");
     background-size: cover;
 }
+
+.wrapper {
+    width: 100vh;
+    height: 100vh;
+   /*   background-color: #ffbc1f; */
+    background-image:
+       radial-gradient(
+         circle at 50% 25%,
+         #fff4b2,
+         #fee120,
+         #ff9e1F 40%);
+   }
+   #logo {
+        display: block;   
+        margin: auto;
+        width: 53%;
+   }
