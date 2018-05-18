@@ -4,3 +4,8 @@
 .navbar-brand {
     width: 100px;
 }
+body {
+    height: 100vh;
+    background-image: url("/assets/images/gen_bkg.png");
+    background-size: cover;
+}
