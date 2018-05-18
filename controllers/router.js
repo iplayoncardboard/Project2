@@ -14,8 +14,6 @@ router.get('/register', (req, res)=> {
 });
 
 router.post('/register', (req, res)=>{
-   
-  
 
     Models.user.findAll({
         where: {
@@ -87,7 +85,14 @@ router.post('/play', (req, res)=>{
             }
           }).then((data)=>{
             res.json(data); 
-
+            var phrases =[];
+            //phrases.push(data.dataValues);
+           
+             console.log(data.dataValues.phrase_1); //THIS LOGS PHASE 1
+           
+          // console.log(phrases);
+          // console.log(phrases.phrase_1);
+          console.log(entries.dataValues.word_1); //THIS LOGS WORD 1
 
 
             //    var madlib = [];
