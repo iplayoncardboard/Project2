@@ -1,8 +1,18 @@
 module.exports = function(sequelize, DataTypes) {
-    const Entries = sequelize.define("entries", {
-      // Giving the Author model a name of type STRING
-      user_name: DataTypes.STRING,
-      pw_hash: DataTypes.STRING
+    var Entries = sequelize.define("Entries", {
+      // Giving the entries model types
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1]
+        }
+      },
+      body: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        len: [1]
+      }
     });
 
    
