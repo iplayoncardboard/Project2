@@ -10,7 +10,7 @@ var config = require(__dirname + "/../config/config.js")[env];
 var db = {};
 
 if (process.env.JAWSDB_URL) {
-  var sequelize = new Sequelize(process.env[process.env.JAWSDB_URL]);
+  var sequelize = new Sequelize(process.env[process.env.JAWSDB_URL],'mysql');
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
