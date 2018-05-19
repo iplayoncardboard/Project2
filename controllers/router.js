@@ -176,6 +176,28 @@ router.post('/play', (req, res)=>{
     
 });
 
+router.get("/api/current-entry", function(req, res) {
+    Models.entries.findOne({
+        where: {
+            id: finalMadlib[1]
+        }
+      }).then((currentEntry)=>{ 
+        res.json(currentEntry);
+        console.log(currentEntry);
+      });
+});
+
+
+router.delete("/api/current-entry", function(req, res) {
+    Models.entries.destroy({
+      where: {
+        id: finalMadlib[1]
+      }
+    }).then(function(currentEntry) {
+      res.json(currentEntry);
+    });
+  });
+
 router.get("/api/currentlib", function(req, res) {
     console.log(finalMadlib);
     Models.libs.findOne({

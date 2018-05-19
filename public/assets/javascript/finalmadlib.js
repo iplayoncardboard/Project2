@@ -10,8 +10,43 @@ $(document).ready(function() {
 //     //   getPosts(postCategorySelect.val());
 //     // });
 
+
 //  });
+
+
+$('#checkbox').click(function() {
+  if ($(this).is(':checked')) {
+    $('span input').attr('checked', true);
+  } else {
+    $('span input').attr('checked', false);
+  }
+});
+
+
+
+$('#button-play-again').click(function(){
+  if ($("#checkbox").is(":checked")) {
     
+    console.log("Madlib Entry is Saved to Database");
+
+    
+
+  } else {
+    console.log("Checkbox is NOT Checked");
+    //ADD DELETE DATABASE FUNCTION
+    $.ajax({
+      method: "DELETE",
+      url: "/api/current-entry"
+    })
+    // .then(getAuthors);
+    
+  }
+   //event.preventDefault();
+   alert("THIS IS A TEST");
+   $('body').load("/play");
+    
+ }); 
+
     function getFinalLib() {
         
         $.get("/api/currentlib", function(data) {
@@ -52,6 +87,6 @@ $(document).ready(function() {
   
         });
       }
-
       getFinalLib();
+
    });

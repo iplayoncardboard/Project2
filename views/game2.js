@@ -8,9 +8,9 @@ $ (document).ready (function() {
             $("#entries-form").show();
             
             //on click?
-            function displayThis() {
+            function displayBG() {
                 console.log("display");
-            switch () {
+            switch (Cat) {
                 $('body').removeClass('body.sleep body.camp body.bridal body.baby');
                 case "sleep":
                 $('body').addClass('body.sleep');
@@ -32,7 +32,7 @@ $ (document).ready (function() {
     })
 });
 
-{/* <script>
+{/* <script>  Different ways of changing backgrounds...JJP  Notes
 function myFunction() {
     document.body.style.backgroundColor = "#f3f3f3";
     document.body.style.backgroundImage = "url('img_tree.png')";
@@ -55,3 +55,19 @@ function myFunction() {
 //         default:
 //             //nothing of note here
 //     }
+
+// CSS
+
+// #button{
+//    background-image: url("initial_image.png");
+// }
+
+// #button.toggled{
+//   background-image:url("toggled_image.png");
+// }
+// JS
+
+// $('#button').click(function(){
+//   $('#my_content').toggle();
+//   $(this).toggleClass('toggled');
+// });
