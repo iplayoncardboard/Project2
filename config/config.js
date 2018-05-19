@@ -1,15 +1,15 @@
 const fs = require('fs');
+const dotenv = require('dotenv');
 
 module.exports = {
     development: {
-      username: "root",
-      password: null,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
       database: 'fablib_db',
-      host: "127.0.0.1",
-      port: 3306,
+      host: process.env.DB_HOST,
       dialect: 'mysql'
     }
     
-  };
+ };
 
 
