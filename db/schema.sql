@@ -9,11 +9,16 @@ CREATE TABLE user(
     pw_hash VARCHAR(255)
 );
 
+CREATE TABLE category(
+    id INTEGER(11) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
+    category VARCHAR(100)
+);
 
 CREATE TABLE libs(
     id INTEGER(11) NOT NULL AUTO_INCREMENT,
     PRIMARY KEY(id),
-
+    category_id INTEGER(11),
     phrase_1 LONGTEXT,
     phrase_2 LONGTEXT,
     phrase_3 LONGTEXT,

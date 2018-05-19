@@ -69,12 +69,13 @@ app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
 let routes = require("./controllers/router");
 
+
 app.use(routes);
 
 // Start our server so that it can begin listening to client requests.
 
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log("Server listening on: http://localhost:" + PORT);
   });
