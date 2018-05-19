@@ -3,6 +3,9 @@ const Models = require("../models");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const router = express.Router();
+const passport = require('passport');
+
+
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -33,7 +36,18 @@ router.post('/register', (req, res)=>{
                     pw_hash: hash
                 }
                 Models.user.create(newUser).then((user)=>{
-                    res.redirect('/login')
+                    Models.user.findOne({
+                        where: {
+                            user_name: newUser.user_name
+                        }
+                      }).then((data)=>{
+                          console.log("this is the login data: "+ JSON.stringify(data));
+                          req.login(data.user_name,(err)=>{
+                              if(err) throw err;
+
+                              res.redirect('/');
+                          })
+                      });
                 });
             });
         }
@@ -212,6 +226,17 @@ router.get("/api/currentlib", function(req, res) {
 
     // res.json(finalMadlib);
     
+
+
     });
 
+
+    passport.serializeUser(function(user, cb) {
+        cb(null, user);
+      });
+      
+      passport.deserializeUser(function(id, cb) {
+          cb(null, id);
+      });
+      
 module.exports = router;
