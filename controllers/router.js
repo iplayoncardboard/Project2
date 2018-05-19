@@ -14,28 +14,32 @@ router.get('/register', (req, res)=> {
 });
 
 router.post('/register', (req, res)=>{
-//Looks for a duplicate username
+
     Models.user.findAll({
         where: {
             user_name: req.body.user_name
         }
       }).then((data)=>{
-          //if duplicate username is not found 
         if(data.length === 0){
-            //has and salt password
+
+
             bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
                 if(err){
                     console.log(err);
                 }
-                // Store username and hash in your password DB.
+                // Store hash in your password DB.
                 let newUser = {
                     user_name: req.body.user_name,
                     pw_hash: hash
                 }
                 Models.user.create(newUser).then((user)=>{
-                    res.redirect('/login')
+                    res.json(user);
                 });
             });
+          
+
+
+           
         }
         else {
             console.log("ERROR USER EXISTS")
@@ -43,86 +47,147 @@ router.post('/register', (req, res)=>{
       });
 });
 
-router.get('/login',(req,res)=>{
-    res.render('./partials/login');
-});
 
-router.post('/login',(req,res)=>{
-    lookup = {
-        user_name: req.body.user_name,
-        pw_hash: req.body.password
-    }
+//CATEGORY API
+router.get("/api/categories", function(req, res) {
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Post
+    Models.category.findAll({
+     
+    }).then(function(dbCategories) {
+      res.json(dbCategories);
+    });
+  });
 
-    Models.user.findOne({
-        where: {
-            user_name: req.body.user_name
-        }
-      }).then((data)=>{
-      
-          if(!data){
-              console.log("No User Found");
-          }
-          else{  bcrypt.compare(req.body.password, data.pw_hash, (err, res) =>{
-            // res == true
-            console.log("PASSWORD MATCH: "+ res)
-        });
-        }
-      });
+  //LIBS API
+router.get("/api/libs", function(req, res) {
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Post
+    Models.libs.findAll({
+     
+    }).then(function(dbLibs) {
+      res.json(dbLibs);
+    });
+  });
 
-
-});
-
+//PLAY ROUTE
 router.get("/play", (req, res) => {
     res.render("play");
 });
 
+
+var finalMadlib = [];
 router.post('/play', (req, res)=>{
+    //Pick a Lib Matching the Category Selection
+
+   Models.libs.findAll({
+    where: {
+        category_id: req.body.selectCategory
+    }
+  }).then((data)=>{
+      var madlibOptions = [];
+    //res.json(data);  //DATA IS AN ARRAY
+    for (i=0;i<data.length;i++) {
+        madlibOptions.push(data[i].dataValues.id);
+    }
+    // console.log(madlibOptions);
+    var madlib = madlibOptions[Math.floor(Math.random()*madlibOptions.length)]; //THIS PICKS A RANDOM MADLIB FROM THE CATEGORY
+    //console.log(madlib);
+
+    //Push Entry Data to Database
     let newEntry = {
-    word_1: req.body.word_1,
-    word_2: req.body.word_2,
-    word_3: req.body.word_3,
-    word_4: req.body.word_4,
-    word_5: req.body.word_5,
-    word_6: req.body.word_6,
-    word_7: req.body.word_7,
-    word_8: req.body.word_8,
-    word_9: req.body.word_9,
-    word_10: req.body.word_10,
-    word_11: req.body.word_11,
-    word_12: req.body.word_12,
-    word_13: req.body.word_13
+        lib_id: madlib,
+        word_1: req.body.word_1,
+        word_2: req.body.word_2,
+        word_3: req.body.word_3,
+        word_4: req.body.word_4,
+        word_5: req.body.word_5,
+        word_6: req.body.word_6,
+        word_7: req.body.word_7,
+        word_8: req.body.word_8,
+        word_9: req.body.word_9,
+        word_10: req.body.word_10,
+        word_11: req.body.word_11,
+        word_12: req.body.word_12,
+        word_13: req.body.word_13
     }
     
-    Models.entries.create(newEntry).then((entries)=>{
+     Models.entries.create(newEntry).then((entries)=>{
        //THIS SHOWS ENTRIES DATA
       // res.json(entries);
 
-        //res.render("./partials/madlib")
-
-        //THIS SHOWS MADLIB DATA
+      //DISPLAY MADLIB + WORDS
         Models.libs.findOne({
             where: {
-                id: 1
+                id: madlib
             }
           }).then((data)=>{
-            res.json(data); 
+            finalMadlib = [];
+            finalMadlib.push(data.dataValues.id);
+            finalMadlib.push(entries.dataValues.id);
+            console.log(finalMadlib);
 
+              res.render("./madlib");
 
+            });
 
-            //    var madlib = [];
-        //  madlib.push(data.word_1);
-        //  var words =[];
-        //     words.push(entries.phrase_1);
-        //     console.log(madlib,words);
-           // res.render("./partials/registrationForm")
            
-          });
+          
+     });
     });
-        
     
 });
 
+router.get("/api/currentlib", function(req, res) {
+    console.log(finalMadlib);
+    Models.libs.findOne({
+        where: {
+            id: finalMadlib[0]
+        }
+      }).then((data)=>{ 
+        Models.entries.findOne({
+            where: {
+                id: finalMadlib[1]
+            }
+          }).then((entries)=>{ 
+            var finalMadlibWords = [];
+            finalMadlibWords.push(data.dataValues.phrase_1);
+            finalMadlibWords.push(entries.dataValues.word_1);
+            finalMadlibWords.push(data.dataValues.phrase_2);
+            finalMadlibWords.push(entries.dataValues.word_2);
+            finalMadlibWords.push(data.dataValues.phrase_3);
+            finalMadlibWords.push(entries.dataValues.word_3);
+            finalMadlibWords.push(data.dataValues.phrase_4);
+            finalMadlibWords.push(entries.dataValues.word_4);
+            finalMadlibWords.push(data.dataValues.phrase_5);
+            finalMadlibWords.push(entries.dataValues.word_5);
+            finalMadlibWords.push(data.dataValues.phrase_6);
+            finalMadlibWords.push(entries.dataValues.word_6);
+            finalMadlibWords.push(data.dataValues.phrase_7);
+            finalMadlibWords.push(entries.dataValues.word_7);
+            finalMadlibWords.push(data.dataValues.phrase_8);
+            finalMadlibWords.push(entries.dataValues.word_8);
+            finalMadlibWords.push(data.dataValues.phrase_9);
+            finalMadlibWords.push(entries.dataValues.word_9);
+            finalMadlibWords.push(data.dataValues.phrase_10);
+            finalMadlibWords.push(entries.dataValues.word_10);
+            finalMadlibWords.push(data.dataValues.phrase_11);
+            finalMadlibWords.push(entries.dataValues.word_11);
+            finalMadlibWords.push(data.dataValues.phrase_12);
+            finalMadlibWords.push(entries.dataValues.word_12);
+            finalMadlibWords.push(data.dataValues.phrase_13);
+            finalMadlibWords.push(entries.dataValues.word_13);
+            finalMadlibWords.push(data.dataValues.phrase_14);
+            res.json(finalMadlibWords);
 
+    });
+      });        
+               
 
+    // res.json(finalMadlib);
+    
+    });
 
 module.exports = router;

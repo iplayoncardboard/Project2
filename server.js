@@ -69,6 +69,7 @@ app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
 let routes = require("./controllers/router");
 
+
 app.use(routes);
 
 // Start our server so that it can begin listening to client requests.
