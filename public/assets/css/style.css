@@ -14,13 +14,49 @@ body {
   color: black;
 }
 
-p.sleep1 {
-  font-family: "Pangolin", cursive;
+body.sleep {
+  background-image: url("sleepover.png");
+  font-family: "Sunshiney", cursive;
   font-size: 22px;
   color: black;
 }
 
-p.sleep2 {
+body.wedding {
+  background-image: url(".png") ;
+  font-family: "Parisienne", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+body.camp {
+  background-image: url("camping.png");
+  font-family: "Freckle Face", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+body.baby {
+  background-image: url("baby_shower.png");
+  font-family: "Butterfly Kids", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+body.boys {
+  background-image: url("sleepover.png") ;
+  font-family: "Dokdo", cursive;
+  font-size: 22px;
+  color: black;
+}
+
+.footer {
+  text-align: center;
+  text-shadow: 1px 1px white;
+  color: black;
+}
+
+/*These are just to view fonts until the background switch is set up*/
+p.sleep {
   font-family: "Sunshiney", cursive;
   font-size: 22px;
   color: black;
@@ -31,7 +67,6 @@ p.wedding {
   font-size: 22px;
   color: black;
 }
-
 p.camp {
   font-family: "Freckle Face", cursive;
   font-size: 22px;
@@ -63,10 +98,30 @@ p.baby2 {
 }
 
 
+.wrapper {
+    width: 100vh;
+    height: 100vh;
+   /*   background-color: #ffbc1f; */
+    background-image:
+       radial-gradient(
+         circle at 50% 25%,
+         #fff4b2,
+         #fee120,
+         #ff9e1F 40%);
+   }
+   #logo {
+        display: block;   
+        margin: auto;
+        width: 53%;
+   }
+
+
 .entry {
   font-size: 30px;
   color: blue;
 }
+
+
 
 
 /* Centered text */
@@ -79,3 +134,4 @@ p.baby2 {
   left: 50%;
   transform: translate(-50%, -50%); */
 /* } */
+
