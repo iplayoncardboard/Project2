@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const router = express.Router();
 const passport = require('passport');
-
+const bodyParser = require("body-parser");
 
 
 router.get("/", (req, res) => {
@@ -17,15 +17,13 @@ router.get('/register', (req, res)=> {
 });
 
 router.post('/register', (req, res)=>{
-
+    console.log("WTF USER NAME: " + req.body.user_name);
     Models.user.findAll({
         where: {
-            user_name: req.body.user_name
+            user_name:req.body.user_name
         }
       }).then((data)=>{
         if(data.length === 0){
-
-
             bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
                 if(err){
                     console.log(err);
@@ -222,9 +220,6 @@ router.get("/api/currentlib", function(req, res) {
 
     });
       });        
-               
-
-    // res.json(finalMadlib);
     
 
 
@@ -238,5 +233,5 @@ router.get("/api/currentlib", function(req, res) {
       passport.deserializeUser(function(id, cb) {
           cb(null, id);
       });
-      
+
 module.exports = router;

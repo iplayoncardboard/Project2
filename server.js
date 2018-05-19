@@ -11,23 +11,23 @@ const db = require('./models');
 const routes = require("./controllers/router");
 const exphbs = require("express-handlebars");
 
+//setup express session
 const app = express();
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
-
 
 // Set Handlebars.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them.
-app.use(routes);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser);
 
+// Import routes and give the server access to them.
+
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
-//setup express session
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -37,8 +37,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(app.get);
-app.use(app.post);
+// app.use('/', routes);
+app.use(routes);
     // Configure Passport authenticated session persistence.
 //
 // In order to restore authentication state across HTTP requests, Passport needs
