@@ -33,13 +33,9 @@ router.post('/register', (req, res)=>{
                     pw_hash: hash
                 }
                 Models.user.create(newUser).then((user)=>{
-                    res.json(user);
+                    res.redirect('/login')
                 });
             });
-          
-
-
-           
         }
         else {
             console.log("ERROR USER EXISTS")
@@ -47,6 +43,34 @@ router.post('/register', (req, res)=>{
       });
 });
 
+router.get('/login',(req,res)=>{
+    res.render('./partials/login');
+});
+
+router.post('/login',(req,res)=>{
+    lookup = {
+        user_name: req.body.user_name,
+        pw_hash: req.body.password
+    }
+
+    Models.user.findOne({
+        where: {
+            user_name: req.body.user_name
+        }
+      }).then((data)=>{
+      
+          if(!data){
+              console.log("No User Found");
+          }
+          else{  bcrypt.compare(req.body.password, data.pw_hash, (err, res) =>{
+            // res == true
+            console.log("PASSWORD MATCH: "+ res)
+        });
+        }
+      });
+
+
+});
 
 //CATEGORY API
 router.get("/api/categories", function(req, res) {
