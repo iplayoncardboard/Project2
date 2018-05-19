@@ -1,16 +1,16 @@
 $(document).ready(function() {
    
- $("#button-clear-table").click(function(){
+//  $("#button-clear-table").click(function(){
  
-  $.get("/api/currentlib", post, function() {
-   var clearTable =[];
-    res.json(clearTable);
-  });
-    // .then(function() {
-    //   getPosts(postCategorySelect.val());
-    // });
+//   $.get("/api/currentlib", post, function() {
+//    var clearTable =[];
+//     res.json(clearTable);
+//   });
+//     // .then(function() {
+//     //   getPosts(postCategorySelect.val());
+//     // });
 
- });
+//  });
     
     function getFinalLib() {
         
@@ -49,10 +49,7 @@ $(document).ready(function() {
           $("#madlib").append(data[24]);
           $("#madlib").append("<span class='entry'> "+data[25]+"</span>");
           $("#madlib").append(data[26]);
-          
-
-          
-          
+  
         });
       }
 
