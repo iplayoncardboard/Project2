@@ -10,40 +10,57 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Pangolin", cursive;
-  font-size: 22px;
+  font-size: 25px;
   color: black;
 }
 
-body.sleep {
+.wrapper {
+  width: 100vh;
+  height: 100vh;
+  /* background color: #ffbc1f; */
+  background-image: radial-gradient(
+    circle at 50% 25%,
+    #fff4b2 5% #fee120,
+    #ff9e1f 40%
+  );
+}
+
+#logo {
+  display: block;
+  margin: auto;
+  width: 53%;
+}
+
+#body.sleep {
   background-image: url("sleepover.png");
   font-family: "Sunshiney", cursive;
   font-size: 22px;
   color: black;
 }
 
-body.wedding {
-  background-image: url(".png") ;
+#body.wedding {
+  background-image: url(".png");
   font-family: "Parisienne", cursive;
   font-size: 22px;
   color: black;
 }
 
-body.camp {
+#body.camp {
   background-image: url("camping.png");
   font-family: "Freckle Face", cursive;
   font-size: 22px;
   color: black;
 }
 
-body.baby {
+#body.baby {
   background-image: url("baby_shower.png");
   font-family: "Butterfly Kids", cursive;
   font-size: 22px;
   color: black;
 }
 
-body.boys {
-  background-image: url("sleepover.png") ;
+#body.boys {
+  background-image: url("sleepover.png");
   font-family: "Dokdo", cursive;
   font-size: 22px;
   color: black;
@@ -55,8 +72,21 @@ body.boys {
   color: black;
 }
 
+/*.animatedhover {
+  animation-play-state: paused;
+} */
+
+.animatedhover:hover {
+  animation-play-state: running;
+}
+
+.entry {
+  font-size: 30px;
+  color: blue;
+}
+
 /*These are just to view fonts until the background switch is set up*/
-p.sleep {
+/* p.sleep {
   font-family: "Sunshiney", cursive;
   font-size: 22px;
   color: black;
@@ -89,49 +119,4 @@ p.baby2 {
   font-family: "Life Savers", cursive;
   font-size: 22px;
   color: black;
-}
-
-.footer {
-  text-align: center;
-  text-shadow: 1px 1px white;
-  color: black;
-}
-
-
-.wrapper {
-    width: 100vh;
-    height: 100vh;
-   /*   background-color: #ffbc1f; */
-    background-image:
-       radial-gradient(
-         circle at 50% 25%,
-         #fff4b2,
-         #fee120,
-         #ff9e1F 40%);
-   }
-   #logo {
-        display: block;   
-        margin: auto;
-        width: 53%;
-   }
-
-
-.entry {
-  font-size: 30px;
-  color: blue;
-}
-
-
-
-
-/* Centered text */
-/* .centered {
-  position: absolute;
-  top: 25%;
-  left:20%;
-  right:20%; */
-  /* top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-/* } */
-
+} */
