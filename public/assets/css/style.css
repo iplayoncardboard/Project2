@@ -18,9 +18,10 @@ body {
   width: 100vh;
   height: 100vh;
   /* background color: #ffbc1f; */
-  background-image: radial-gradient(
+  background: radial-gradient(
     circle at 50% 25%,
-    #fff4b2 5% #fee120,
+    #fff4b2 5%,
+    #fee120,
     #ff9e1f 40%
   );
 }
@@ -72,13 +73,7 @@ body {
   color: black;
 }
 
-/*.animatedhover {
-  animation-play-state: paused;
-} */
 
-.animatedhover:hover {
-  animation-play-state: running;
-}
 
 .entry {
   font-size: 30px;
