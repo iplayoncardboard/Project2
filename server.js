@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser")
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
 const session = require('express-session');
@@ -9,27 +10,6 @@ const env = require('dotenv').config();
 const app = express();
 const db = require('./models');
 
-
-//setup express session
-app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
-
-
-//Setup passport strategy the db. portion will have to be changed. 
-passport.use(new LocalStrategy(
-    function(username, password, cb) {
-      db.users.findByUsername(username, function(err, user) {
-        if (err) { return cb(err); }
-        if (!user) { return cb(null, false); }
-        if (user.password != password) { return cb(null, false); }
-        return cb(null, user);
-      });
-    }));
 
 
     // Configure Passport authenticated session persistence.
@@ -73,6 +53,32 @@ let routes = require("./controllers/router");
 app.use(routes);
 
 // Start our server so that it can begin listening to client requests.
+
+
+app.use(cookieParser);
+
+//setup express session
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  // cookie: { secure: true }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Setup passport strategy the db. portion will have to be changed. 
+passport.use(new LocalStrategy(
+    function(username, password, cb) {
+      db.users.findByUsername(username, function(err, user) {
+        if (err) { return cb(err); }
+        if (!user) { return cb(null, false); }
+        if (user.password != password) { return cb(null, false); }
+        return cb(null, user);
+      });
+    }));
+
 
 
 db.sequelize.sync({ force: false }).then(() => {
