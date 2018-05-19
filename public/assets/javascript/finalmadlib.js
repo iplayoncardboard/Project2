@@ -1,6 +1,16 @@
 $(document).ready(function() {
    
+ $("#button-clear-table").click(function(){
  
+  $.get("/api/currentlib", post, function() {
+   var clearTable =[];
+    res.json(clearTable);
+  });
+    // .then(function() {
+    //   getPosts(postCategorySelect.val());
+    // });
+
+ });
     
     function getFinalLib() {
         

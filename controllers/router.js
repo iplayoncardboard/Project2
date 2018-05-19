@@ -77,10 +77,11 @@ router.get("/play", (req, res) => {
     res.render("play");
 });
 
+
+var finalMadlib = [];
 router.post('/play', (req, res)=>{
-    
     //Pick a Lib Matching the Category Selection
-   
+
    Models.libs.findAll({
     where: {
         category_id: req.body.selectCategory
@@ -123,63 +124,14 @@ router.post('/play', (req, res)=>{
                 id: madlib
             }
           }).then((data)=>{
-            
-
-            var finalMadlib = []; 
-                finalMadlib.push(data.dataValues.phrase_1);
-                finalMadlib.push(entries.dataValues.word_1);
-                finalMadlib.push(data.dataValues.phrase_2);
-                finalMadlib.push(entries.dataValues.word_2);
-                finalMadlib.push(data.dataValues.phrase_3);
-                finalMadlib.push(entries.dataValues.word_3);
-                finalMadlib.push(data.dataValues.phrase_4);
-                finalMadlib.push(entries.dataValues.word_4);
-                finalMadlib.push(data.dataValues.phrase_5);
-                finalMadlib.push(entries.dataValues.word_5);
-                finalMadlib.push(data.dataValues.phrase_6);
-                finalMadlib.push(entries.dataValues.word_6);
-                finalMadlib.push(data.dataValues.phrase_7);
-                finalMadlib.push(entries.dataValues.word_7);
-                finalMadlib.push(data.dataValues.phrase_8);
-                finalMadlib.push(entries.dataValues.word_8);
-                finalMadlib.push(data.dataValues.phrase_9);
-                finalMadlib.push(entries.dataValues.word_9);
-                finalMadlib.push(data.dataValues.phrase_10);
-                finalMadlib.push(entries.dataValues.word_10);
-                finalMadlib.push(data.dataValues.phrase_11);
-                finalMadlib.push(entries.dataValues.word_11);
-                finalMadlib.push(data.dataValues.phrase_12);
-                finalMadlib.push(entries.dataValues.word_12);
-                finalMadlib.push(data.dataValues.phrase_13);
-                finalMadlib.push(entries.dataValues.word_13);
-                finalMadlib.push(data.dataValues.phrase_14);
-
-            
-            
+            finalMadlib = [];
+            finalMadlib.push(data.dataValues.id);
+            finalMadlib.push(entries.dataValues.id);
             console.log(finalMadlib);
-            
-          //Works once but doesn't reset with different plays, have to restart the server each time
-          //Try koining table on get instead of using array?
-            router.get("/api/currentlib", function(req, res) {
-                
-                res.json(finalMadlib);
-                
-                });
-              });
-              
+
               res.render("./madlib");
 
-            // return finalMadlib;
-            //  console.log(data.dataValues.phrase_1); //THIS LOGS PHASE 1    
-            //     console.log(entries.dataValues.word_1); //THIS LOGS WORD 1
-            //     console.log(data.dataValues.phrase_2); //THIS LOGS PHASE 1    
-            //     console.log(entries.dataValues.word_2); //THIS LOGS WORD 1
-
-            
- 
-        
-        
-
+            });
 
            
           
@@ -188,6 +140,54 @@ router.post('/play', (req, res)=>{
     
 });
 
+router.get("/api/currentlib", function(req, res) {
+    console.log(finalMadlib);
+    Models.libs.findOne({
+        where: {
+            id: finalMadlib[0]
+        }
+      }).then((data)=>{ 
+        Models.entries.findOne({
+            where: {
+                id: finalMadlib[1]
+            }
+          }).then((entries)=>{ 
+            var finalMadlibWords = [];
+            finalMadlibWords.push(data.dataValues.phrase_1);
+            finalMadlibWords.push(entries.dataValues.word_1);
+            finalMadlibWords.push(data.dataValues.phrase_2);
+            finalMadlibWords.push(entries.dataValues.word_2);
+            finalMadlibWords.push(data.dataValues.phrase_3);
+            finalMadlibWords.push(entries.dataValues.word_3);
+            finalMadlibWords.push(data.dataValues.phrase_4);
+            finalMadlibWords.push(entries.dataValues.word_4);
+            finalMadlibWords.push(data.dataValues.phrase_5);
+            finalMadlibWords.push(entries.dataValues.word_5);
+            finalMadlibWords.push(data.dataValues.phrase_6);
+            finalMadlibWords.push(entries.dataValues.word_6);
+            finalMadlibWords.push(data.dataValues.phrase_7);
+            finalMadlibWords.push(entries.dataValues.word_7);
+            finalMadlibWords.push(data.dataValues.phrase_8);
+            finalMadlibWords.push(entries.dataValues.word_8);
+            finalMadlibWords.push(data.dataValues.phrase_9);
+            finalMadlibWords.push(entries.dataValues.word_9);
+            finalMadlibWords.push(data.dataValues.phrase_10);
+            finalMadlibWords.push(entries.dataValues.word_10);
+            finalMadlibWords.push(data.dataValues.phrase_11);
+            finalMadlibWords.push(entries.dataValues.word_11);
+            finalMadlibWords.push(data.dataValues.phrase_12);
+            finalMadlibWords.push(entries.dataValues.word_12);
+            finalMadlibWords.push(data.dataValues.phrase_13);
+            finalMadlibWords.push(entries.dataValues.word_13);
+            finalMadlibWords.push(data.dataValues.phrase_14);
+            res.json(finalMadlibWords);
 
+    });
+      });        
+               
+
+    // res.json(finalMadlib);
+    
+    });
 
 module.exports = router;
