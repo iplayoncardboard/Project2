@@ -41,7 +41,7 @@ router.post('/register', (req, res)=>{
                             user_name: newUser.user_name
                         }
                       }).then((data)=>{
-                          console.log("this is the login data: "+ JSON.stringify(data));
+                        //   console.log("this is the login data: "+ JSON.stringify(data));
                           req.login(data.user_name,(err)=>{
                               if(err) throw err;
 
@@ -76,9 +76,13 @@ router.post('/login',(req,res)=>{
           if(!data){
               console.log("No User Found");
           }
-          else{  bcrypt.compare(req.body.password, data.pw_hash, (err, res) =>{
+          else{  bcrypt.compare(req.body.password, data.pw_hash, (err, resp) =>{
             // res == true
-            console.log("PASSWORD MATCH: "+ res)
+             req.login(data.user_name,(err)=>{
+                              if(err) throw err;
+
+                              res.redirect('/');});
+            console.log("PASSWORD MATCH: "+ resp)
         });
         }
       });
