@@ -116,6 +116,7 @@ router.get("/play", (req, res) => {
 
 
 var finalMadlib = [];
+
 router.post('/play', (req, res)=>{
     //Pick a Lib Matching the Category Selection
 
@@ -136,6 +137,7 @@ router.post('/play', (req, res)=>{
     //Push Entry Data to Database
     let newEntry = {
         lib_id: madlib,
+        // author_id: - ERIK, THIS NEEDS TO BE LINKED TO THE USERSID
         word_1: req.body.word_1,
         word_2: req.body.word_2,
         word_3: req.body.word_3,
@@ -213,6 +215,7 @@ router.get("/api/currentlib", function(req, res) {
             }
           }).then((entries)=>{ 
             var finalMadlibWords = [];
+            
             finalMadlibWords.push(data.dataValues.phrase_1);
             finalMadlibWords.push(entries.dataValues.word_1);
             finalMadlibWords.push(data.dataValues.phrase_2);
@@ -240,6 +243,7 @@ router.get("/api/currentlib", function(req, res) {
             finalMadlibWords.push(data.dataValues.phrase_13);
             finalMadlibWords.push(entries.dataValues.word_13);
             finalMadlibWords.push(data.dataValues.phrase_14);
+            finalMadlibWords.push(data.dataValues.category_id);
             res.json(finalMadlibWords);
 
     });

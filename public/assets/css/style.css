@@ -2,7 +2,9 @@
   font-size: 25px;
 }
 .navbar-brand {
-  width: 150px;
+  width: 200px;
+  padding:10px;
+ 
 }
 
 
@@ -37,7 +39,10 @@ nav {
   margin: auto;
   width: 53%;
 }
-
+.play-form {
+  background:white;
+  padding: 20px;
+}
 .body-sleep {
   background-image: url("../images/sleepover.png");
   font-family: "Sunshiney", cursive;
@@ -54,6 +59,7 @@ nav {
 
 .body-camp {
   background-image: url("../images/camping.png");
+  
   font-family: "Freckle Face", cursive;
   font-size: 22px;
   color: black;
