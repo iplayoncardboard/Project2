@@ -5,5 +5,12 @@ module.exports = function(sequelize, DataTypes) {
       pw_hash: DataTypes.STRING
     });
 
+    User.associate = function(models) {
+      
+      User.hasMany(models.entries
+        , {foreignKey: 'user_name'}
+      );
+    };
+
     return User;
 }
