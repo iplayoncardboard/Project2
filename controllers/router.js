@@ -19,7 +19,6 @@ router.get('/register', (req, res)=> {
 });
 
 router.post('/register', (req, res)=>{
-    console.log("WTF USER NAME: " + req.body.user_name);
     Models.user.findAll({
         where: {
             user_name:req.body.user_name
