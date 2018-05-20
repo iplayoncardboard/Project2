@@ -56,6 +56,7 @@ $('#button-play-again').click(function(){
         //   $("#madlib").append(data[i]);
         //   $("#madlib").append("<span class='entry'>"+data[i+1]+"</span>");
         //  }
+         
 
          $("#madlib").append(data[0]);
           $("#madlib").append("<span class='entry'> "+data[1]+"</span>");
@@ -84,6 +85,40 @@ $('#button-play-again').click(function(){
           $("#madlib").append(data[24]);
           $("#madlib").append("<span class='entry'> "+data[25]+"</span>");
           $("#madlib").append(data[26]);
+
+          console.log (data[27]);
+           if (data[27] === 1) {
+           
+            $('body').removeClass('body-sleep body-camp body-wedding body-baby');
+            $("body").addClass("body-sleep");
+            
+
+
+        } else if (data[27] === 2) {
+           
+            $('body').removeClass('body-sleep body-camp body-wedding body-baby');
+            $("body").addClass("body-baby");
+           
+
+
+        } else if (data[27] === 3) {
+            
+            $('body').removeClass('body-sleep body-camp body-wedding body-baby');
+            $("body").addClass("body-camp");
+     
+
+
+        } else if (data[27] === 4) {
+            
+            $('body').removeClass('body-sleep body-camp body-wedding body-baby');
+            $("body").addClass("body-wedding");
+      
+
+
+        }else {
+          $('body').removeClass('body-sleep body-camp body-wedding body-baby');
+        }
+
   
         });
       }
