@@ -78,11 +78,15 @@ router.post('/login',(req,res)=>{
           }
           else{  bcrypt.compare(req.body.password, data.pw_hash, (err, resp) =>{
             // res == true
-             req.login(data.user_name,(err)=>{
-                              if(err) throw err;
+            if(resp){      req.login(data.user_name,(err)=>{
+                if(err) throw err;
 
-                              res.redirect('/');});
-            console.log("PASSWORD MATCH: "+ resp)
+                res.redirect('/');
+        });}
+            else{console.log("PASSWORD MATCH: "+ resp)
+            res.redirect('/login');
+        }
+            
         });
         }
       });
