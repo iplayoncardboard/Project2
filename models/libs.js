@@ -1,4 +1,5 @@
 
+
 module.exports = function(sequelize, DataTypes) {
     const Libs = sequelize.define("libs", {
       category_id: DataTypes.INTEGER,
@@ -18,5 +19,12 @@ module.exports = function(sequelize, DataTypes) {
       phrase_14: DataTypes.TEXT
     });
 
+    Libs.associate = function(models) {
+      
+      Libs.hasMany(models.entries
+        , {foreignKey: 'lib_id'}
+      );
+    };
+  
     return Libs;
 }

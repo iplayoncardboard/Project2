@@ -27,6 +27,10 @@ body {
   
  
 }
+nav {
+  float: right;
+  position: relative
+}
 
 #logo {
   display: block;
@@ -34,33 +38,30 @@ body {
   width: 53%;
 }
 
-#body.sleep {
-  background-image: url("sleepover.png");
+.body-sleep {
+  background-image: url("../images/sleepover.png");
   font-family: "Sunshiney", cursive;
   font-size: 22px;
   color: black;
 }
 
-#body.wedding {
-  background-image: url(".png");
+.body-wedding {
+  background-image: url("../images/wedding_bkg.png");
   font-family: "Parisienne", cursive;
   font-size: 22px;
   color: black;
 }
 
-#body.camp {
-  background-image: url("camping.png");
+.body-camp {
+  background-image: url("../images/camping.png");
   font-family: "Freckle Face", cursive;
   font-size: 22px;
   color: black;
 }
-nav {
-  float: right;
-  position: relative
-}
 
-#body.baby {
-  background-image: url("baby_shower.png");
+
+.body-baby {
+  background-image: url("../images/baby_shower.png");
   font-family: "Butterfly Kids", cursive;
   font-size: 22px;
   color: black;
