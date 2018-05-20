@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 
 router.get("/", (req, res) => {
     res.render("index");
+    console.log(req.user);
+    console.log(req.isAuthenticated());
 });
 
 router.get('/register', (req, res)=> {
@@ -17,7 +19,6 @@ router.get('/register', (req, res)=> {
 });
 
 router.post('/register', (req, res)=>{
-    console.log("WTF USER NAME: " + req.body.user_name);
     Models.user.findAll({
         where: {
             user_name:req.body.user_name

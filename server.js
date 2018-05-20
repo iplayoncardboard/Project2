@@ -5,11 +5,13 @@ const cookieParser = require("cookie-parser")
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
 const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const PORT = process.env.PORT || 8080;
 const env = require('dotenv').config();
 const db = require('./models');
 const routes = require("./controllers/router");
 const exphbs = require("express-handlebars");
+const Models = require("./models");
 
 //setup express session
 const app = express();
@@ -31,6 +33,9 @@ app.use(bodyParser.json());
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: process.env.SESSION_SECRET,
+  store: new SequelizeStore({
+    db: db.sequelize 
+  }),
   resave: false,
   saveUninitialized: false,
   // cookie: { secure: true }
