@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 
 router.get("/", (req, res) => {
     res.render("index");
-    console.log(req.user);
+    // console.log(req.user);
     console.log(req.isAuthenticated());
 });
 
@@ -146,11 +146,14 @@ router.post('/play', authenticationMiddleware(),(req, res)=>{
     // console.log(madlibOptions);
     var madlib = madlibOptions[Math.floor(Math.random()*madlibOptions.length)]; //THIS PICKS A RANDOM MADLIB FROM THE CATEGORY
     //console.log(madlib);
+   
+
+    
 
     //Push Entry Data to Database
     let newEntry = {
         lib_id: madlib,
-        // author_id: - ERIK, THIS NEEDS TO BE LINKED TO THE USERSID
+        user_name: req.user,
         word_1: req.body.word_1,
         word_2: req.body.word_2,
         word_3: req.body.word_3,
