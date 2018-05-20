@@ -231,9 +231,61 @@ router.get("/api/currentlib", function(req, res) {
     });
       });        
                
+     
 
     // res.json(finalMadlib);
     
     });
+
+
+    //DO A JOIN TABLES HERE - PULL ENTRIES & ASSOCIATED MADLIBS
+    // router.get("/api/gallerylibs", function(req, res) {
+        // console.log(finalMadlib);
+        // Models.libs.findOne({
+        //     where: {
+        //         id: finalMadlib[0]
+        //     }
+        //   }).then((data)=>{ 
+        //     Models.entries.findOne({
+        //         where: {
+        //             id: finalMadlib[1]
+        //         }
+            //   }).then((entries)=>{ 
+                // var finalMadlibWords = [];
+                // finalMadlibWords.push(data.dataValues.phrase_1);
+                // finalMadlibWords.push(entries.dataValues.word_1);
+                // finalMadlibWords.push(data.dataValues.phrase_2);
+                // finalMadlibWords.push(entries.dataValues.word_2);
+                // finalMadlibWords.push(data.dataValues.phrase_3);
+                // finalMadlibWords.push(entries.dataValues.word_3);
+                // finalMadlibWords.push(data.dataValues.phrase_4);
+                // finalMadlibWords.push(entries.dataValues.word_4);
+                // finalMadlibWords.push(data.dataValues.phrase_5);
+                // finalMadlibWords.push(entries.dataValues.word_5);
+                // finalMadlibWords.push(data.dataValues.phrase_6);
+                // finalMadlibWords.push(entries.dataValues.word_6);
+                // finalMadlibWords.push(data.dataValues.phrase_7);
+                // finalMadlibWords.push(entries.dataValues.word_7);
+                // finalMadlibWords.push(data.dataValues.phrase_8);
+                // finalMadlibWords.push(entries.dataValues.word_8);
+                // finalMadlibWords.push(data.dataValues.phrase_9);
+                // finalMadlibWords.push(entries.dataValues.word_9);
+                // finalMadlibWords.push(data.dataValues.phrase_10);
+                // finalMadlibWords.push(entries.dataValues.word_10);
+                // finalMadlibWords.push(data.dataValues.phrase_11);
+                // finalMadlibWords.push(entries.dataValues.word_11);
+                // finalMadlibWords.push(data.dataValues.phrase_12);
+                // finalMadlibWords.push(entries.dataValues.word_12);
+                // finalMadlibWords.push(data.dataValues.phrase_13);
+                // finalMadlibWords.push(entries.dataValues.word_13);
+                // finalMadlibWords.push(data.dataValues.phrase_14);
+                // res.json(finalMadlibWords);
+    
+        // });
+            
+         
+    
+        // res.json(finalMadlib);
+        
 
 module.exports = router;
