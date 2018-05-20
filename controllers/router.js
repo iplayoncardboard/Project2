@@ -91,7 +91,12 @@ router.post('/login',(req,res)=>{
         }
       });
 
+});
 
+router.get('/logout', (req,res)=>{
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
 });
 
 //CATEGORY API
@@ -288,7 +293,7 @@ router.get("/api/currentlib", function(req, res) {
                 console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
         
                 if (req.isAuthenticated()) return next();
-                res.redirect('/register')
+                res.redirect('/login')
             }
         }
 
