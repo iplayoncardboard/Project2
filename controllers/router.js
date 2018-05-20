@@ -15,7 +15,8 @@ router.get("/", (req, res) => {
 
 router.get('/register', (req, res)=> {
     res.render("./partials/registrationForm")
-    
+    console.log(req.user);
+    console.log(req.isAuthenticated());
 });
 
 router.post('/register', (req, res)=>{
@@ -98,7 +99,7 @@ router.get("/api/categories", function(req, res) {
   });
 
   //LIBS API
-router.get("/api/libs", function(req, res) {
+router.get("/api/libs",authenticationMiddleware(), function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
@@ -110,14 +111,14 @@ router.get("/api/libs", function(req, res) {
   });
 
 //PLAY ROUTE
-router.get("/play", (req, res) => {
+router.get("/play", authenticationMiddleware(),(req, res) => {
     res.render("play");
 });
 
 
 var finalMadlib = [];
 
-router.post('/play', (req, res)=>{
+router.post('/play', authenticationMiddleware(),(req, res)=>{
     //Pick a Lib Matching the Category Selection
 
    Models.libs.findAll({
@@ -275,7 +276,14 @@ router.get("/api/currentlib", function(req, res) {
         });
      
         
-
+        function authenticationMiddleware () {  
+            return (req, res, next) => {
+                console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+        
+                if (req.isAuthenticated()) return next();
+                res.redirect('/register')
+            }
+        }
 
 
 module.exports = router;
