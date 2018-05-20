@@ -24,10 +24,11 @@ module.exports = function(sequelize, DataTypes) {
        , {foreignKey: 'lib_id'}
     );
     
-    Entries.belongsTo(models.user
-       , {foreignKey: 'user_name'}
-    );
-
+    
+    // Entries.belongsTo(models.user
+    //    , {foreignKey: 'user_name'}
+    // );
+    
 
   };
 
