@@ -1,35 +1,38 @@
 function getFinalLib() {
         
     $.get("/api/gallerylibs", function(data) {
-
-        $("#gallery1").append(data[0]);
-      $("#gallery1").append("<span class='entry'> "+data[1]+"</span>");
-      $("gallery1").append(data[2]);
-      $("#gallery1").append("<span class='entry'>"+data[3]+" </span>");
-      $("#gallery1").append(data[4]);
-      $("#gallery1").append("<span class='entry'>"+data[5]+" </span>");
-    //   $("#madlib").append(data[6]);
-    //   $("#madlib").append("<span class='entry'> "+data[7]+" </span>");
-    //   $("#madlib").append(data[8]);
-    //   $("#madlib").append("<span class='entry'> "+data[9]+"</span>");
-    //   $("#madlib").append(data[10]);
-    //   $("#madlib").append("<span class='entry'> "+data[11]+" </span>");
-    //   $("#madlib").append(data[12]);
-    //   $("#madlib").append("<span class='entry'> "+data[13]+"</span>");
-    //   $("#madlib").append(data[14]);
-    //   $("#madlib").append("<span class='entry'> "+data[15]+" </span>");
-    //   $("#madlib").append(data[16]);
-    //   $("#madlib").append("<span class='entry'> "+data[17]+" </span>");
-    //   $("#madlib").append(data[18]);
-    //   $("#madlib").append("<span class='entry'> "+data[19]+" </span>");
-    //   $("#madlib").append(data[20]);
-    //   $("#madlib").append("<span class='entry'> "+data[21]+" </span>");
-    //   $("#madlib").append(data[22]);
-    //   $("#madlib").append("<span class='entry'> "+data[23]+" </span>");
-    //   $("#madlib").append(data[24]);
-    //   $("#madlib").append("<span class='entry'> "+data[25]+"</span>");
-    //   $("#madlib").append(data[26]);
-
+ 
+        for (i=0;i<data.length;i++) {
+            // make cards & apped a new "gallery card/div for each length, have a scrolling / something that collapses"
+    $("#gallery"+i).append(data[i].phrase_1);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_1+"</span>");
+    $("#gallery"+i).append(data[i].phrase_2);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_2+"</span>");
+    $("#gallery"+i).append(data[i].phrase_3);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_3+"</span>");
+    $("#gallery"+i).append(data[i].phrase_4);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_4+"</span>");
+    $("#gallery"+i).append(data[i].phrase_5);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_5+"</span>");
+    $("#gallery"+i).append(data[i].phrase_6);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_6+"</span>");
+    $("#gallery"+i).append(data[i].phrase_7);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_7+"</span>");
+    $("#gallery"+i).append(data[i].phrase_8);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_8+"</span>");
+    $("#gallery"+i).append(data[i].phrase_9);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_9+"</span>");
+    $("#gallery"+i).append(data[i].phrase_10);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_10+"</span>");
+    $("#gallery"+i).append(data[i].phrase_11);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_11+"</span>");
+    $("#gallery"+i).append(data[i].phrase_12);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_12+"</span>");
+    $("#gallery"+i).append(data[i].phrase_13);
+    $("#gallery"+i).append("<span class='entry'> "+data[i].entries[0].word_13+"</span>");
+    $("#gallery"+i).append(data[i].phrase_14);
+// }
+}
     });
 }
 

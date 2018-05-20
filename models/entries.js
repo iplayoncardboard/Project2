@@ -1,3 +1,4 @@
+
 module.exports = function(sequelize, DataTypes) {
   const Entries = sequelize.define("entries", {
     // Making the Entries model
@@ -17,6 +18,12 @@ module.exports = function(sequelize, DataTypes) {
     word_12: DataTypes.TEXT,
     word_13: DataTypes.TEXT
   });
+
+  Entries.associate = function(models) {
+    Entries.belongsTo(models.libs
+       , {foreignKey: 'lib_id'}
+    );
+  };
 
   return Entries;
 }
