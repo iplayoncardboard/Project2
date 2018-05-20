@@ -15,7 +15,8 @@ router.get("/", (req, res) => {
 
 router.get('/register', (req, res)=> {
     res.render("./partials/registrationForm")
-    
+    console.log(req.user);
+    console.log(req.isAuthenticated());
 });
 
 router.post('/register', (req, res)=>{
@@ -40,7 +41,7 @@ router.post('/register', (req, res)=>{
                             user_name: newUser.user_name
                         }
                       }).then((data)=>{
-                          console.log("this is the login data: "+ JSON.stringify(data));
+                        //   console.log("this is the login data: "+ JSON.stringify(data));
                           req.login(data.user_name,(err)=>{
                               if(err) throw err;
 
@@ -75,14 +76,27 @@ router.post('/login',(req,res)=>{
           if(!data){
               console.log("No User Found");
           }
-          else{  bcrypt.compare(req.body.password, data.pw_hash, (err, res) =>{
+          else{  bcrypt.compare(req.body.password, data.pw_hash, (err, resp) =>{
             // res == true
-            console.log("PASSWORD MATCH: "+ res)
+            if(resp){      req.login(data.user_name,(err)=>{
+                if(err) throw err;
+
+                res.redirect('/');
+        });}
+            else{console.log("PASSWORD MATCH: "+ resp)
+            res.redirect('/login');
+        }
+            
         });
         }
       });
 
+});
 
+router.get('/logout', (req,res)=>{
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
 });
 
 //CATEGORY API
@@ -98,7 +112,7 @@ router.get("/api/categories", function(req, res) {
   });
 
   //LIBS API
-router.get("/api/libs", function(req, res) {
+router.get("/api/libs",authenticationMiddleware(), function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
@@ -110,15 +124,14 @@ router.get("/api/libs", function(req, res) {
   });
 
 //PLAY ROUTE
-router.get("/play", (req, res) => {
+router.get("/play", authenticationMiddleware(),(req, res) => {
     res.render("play");
 });
 
 
 var finalMadlib = [];
 
-router.post('/play', (req, res)=>{
-    console.log(req.user);
+router.post('/play', authenticationMiddleware(),(req, res)=>{
     //Pick a Lib Matching the Category Selection
    Models.libs.findAll({
     where: {
@@ -278,7 +291,14 @@ router.get("/api/currentlib", function(req, res) {
         });
      
         
-
+        function authenticationMiddleware () {  
+            return (req, res, next) => {
+                console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+        
+                if (req.isAuthenticated()) return next();
+                res.redirect('/login')
+            }
+        }
 
 
 module.exports = router;
