@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   const Entries = sequelize.define("entries", {
     // Making the Entries model
-    author_id: DataTypes.INTEGER,
+    user_name: DataTypes.STRING,
     lib_id: DataTypes.INTEGER,
     word_1: DataTypes.TEXT,
     word_2: DataTypes.TEXT,
@@ -23,6 +23,12 @@ module.exports = function(sequelize, DataTypes) {
     Entries.belongsTo(models.libs
        , {foreignKey: 'lib_id'}
     );
+    
+    Entries.belongsTo(models.user
+       , {foreignKey: 'user_name'}
+    );
+
+
   };
 
   return Entries;
