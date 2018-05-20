@@ -95,6 +95,11 @@ nav {
   color: blue;
 }
 
+.entry2 {
+  font-weight: 500; 
+  color: blue;
+}
+
 /*These are just to view fonts until the background switch is set up*/
 /* p.sleep {
   font-family: "Sunshiney", cursive;

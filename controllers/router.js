@@ -119,7 +119,6 @@ var finalMadlib = [];
 
 router.post('/play', (req, res)=>{
     //Pick a Lib Matching the Category Selection
-
    Models.libs.findAll({
     where: {
         category_id: req.body.selectCategory
