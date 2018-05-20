@@ -42,7 +42,7 @@ $('#button-play-again').click(function(){
     
   }
    //event.preventDefault();
-   alert("THIS IS A TEST");
+   //alert("THIS IS A TEST");
    $('body').load("/play");
     
  }); 
