@@ -1,6 +1,6 @@
 document.getElementById('reg_submit').addEventListener("click", (event) =>{
     //  console.log(event);
-     event.preventDefault();
+     
      
 
 //get user name
@@ -10,22 +10,32 @@ let password = document.getElementById('password').value;
 //get password verification 
 let passCompare = document.getElementById('password_compare').value;
 //verify the username only contains numbers, letters, _ , or -.
+// window.location.reload()
+if(evaluateUserName(userName) && matchPassword(password,passCompare)){
+    return true;
+}
 
-evaluateUserName(userName);
-
-//verify that the password is at least 8 characers long.
-
-//verify that the passwords match
+else{
+    event.preventDefault();
+}
 
 });
 
 
+//verify that the passwords match
 let evaluateUserName = (userName)=>{
     if(userName.length<5){
         document.getElementById('un_group').innerHTML += '<div class="alert alert-danger" role="alert"> User name must be more than 5 characters. </div>'
+        return false;
     }
-    else{
-        window.location.reload();
-    }
+    else return true;
 
 };
+//verify that the passwords match
+let matchPassword = (pass, pass_compare)=>{
+    if(pass !== pass_compare){
+        document.getElementById('pw_group').innerHTML += '<div class="alert alert-danger" role="alert"> Password must Match. </div>'
+        return false;
+    }
+    else return true;
+}
