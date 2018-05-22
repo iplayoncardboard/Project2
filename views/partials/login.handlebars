@@ -11,10 +11,15 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
     </div>
-    
+        {{#if errors}}
+        {{#each errors}}
+        <div id="un_alert" class="alert alert-danger" role="alert">
+            {{this.msg}}
+        </div>
+        {{/each}}
+    {{/if}}
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
 <div class="play-form">
     <h4><a href="/register">New Users Click Here</a></h4>
 </div>

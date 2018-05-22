@@ -104,8 +104,9 @@ router.post('/login',(req,res)=>{
 
                 res.redirect('/');
         });}
-            else{console.log("PASSWORD MATCH: "+ resp)
-            res.redirect('/login');
+            else{
+
+            res.render('./partials/login',{errors:[{msg:"User name and password do not match"}]});
         }
             
         });
