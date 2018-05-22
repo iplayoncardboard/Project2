@@ -16,8 +16,8 @@ if (process.env.JAWSDB_URL) {
     database: 'vkgwji8j1io4bwj2',
     dialect:  'mysql',
     port:     '3306',
-    host:     's0znzigqvfehvff5.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    logging:  true //false
+    host:     's0znzigqvfehvff5.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
+    // logging:  true //false
   })
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
