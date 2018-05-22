@@ -57,6 +57,8 @@ nav {
   font-family: "Sunshiney", cursive;
   font-size: 22px;
   color: black;
+  background-repeat: repeat;
+  
 }
 
 .body-wedding {
@@ -64,6 +66,7 @@ nav {
   font-family: "Parisienne", cursive;
   font-size: 22px;
   color: black;
+  background-repeat: repeat;
 }
 
 .body-camp {
@@ -72,6 +75,7 @@ nav {
   font-family: "Freckle Face", cursive;
   font-size: 22px;
   color: black;
+  background-repeat: repeat;
 }
 
 
@@ -80,6 +84,7 @@ nav {
   font-family: "Butterfly Kids", cursive;
   font-size: 22px;
   color: black;
+  background-repeat: repeat;
 }
 
 #body.boys {
