@@ -32,7 +32,7 @@ router.post('/register',(req, res)=>{
 req.checkBody('user_name', 'Username can only contain letters, numbers, or underscores.').matches(/^[A-Za-z0-9_-]+$/, 'i');
 
     const errors = req.validationErrors()
-    console.log("ERRORS!!!!" + JSON.stringify(errors));
+    // console.log("ERRORS!!!!" + JSON.stringify(errors));
     if(errors){
       
         res.render('./partials/registrationForm', {errors: errors});
