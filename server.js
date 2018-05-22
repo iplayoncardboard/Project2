@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: "WhatThoz30rBsDoTho???",
   store: new SequelizeStore({
     db: db.sequelize 
   }),
