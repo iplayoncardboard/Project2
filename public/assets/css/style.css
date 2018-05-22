@@ -4,9 +4,14 @@
 .navbar-brand {
   width: 200px;
   padding:10px;
+
+  
  
 }
 
+.navbar {
+  background: white;
+}
 
 body {
   margin: 0;
@@ -14,14 +19,16 @@ body {
   font-family: "Pangolin", cursive;
   font-size: 25px;
   color: black;
-  
-  background-image: url("../images/gen_bkg.png");
-  /* background: radial-gradient(
+/*   
+  background-image: url("../images/gen_bkg.png"); */
+  background: radial-gradient(
     circle at 50% 50%,
     #fff4b2 10%,
     #fee120,
     #ff9e1f 40%
-    ); */
+    );
+    background-repeat:no-repeat;
+background-attachment: fixed;
 }
 
 .wrapper {
@@ -33,7 +40,7 @@ body {
 }
 nav {
   float: right;
-  position: relative
+  position: relative;
 }
 
 #logo {
@@ -50,6 +57,8 @@ nav {
   font-family: "Sunshiney", cursive;
   font-size: 22px;
   color: black;
+  background-repeat: repeat;
+  
 }
 
 .body-wedding {
@@ -57,6 +66,7 @@ nav {
   font-family: "Parisienne", cursive;
   font-size: 22px;
   color: black;
+  background-repeat: repeat;
 }
 
 .body-camp {
@@ -65,6 +75,7 @@ nav {
   font-family: "Freckle Face", cursive;
   font-size: 22px;
   color: black;
+  background-repeat: repeat;
 }
 
 
@@ -73,6 +84,7 @@ nav {
   font-family: "Butterfly Kids", cursive;
   font-size: 22px;
   color: black;
+  background-repeat: repeat;
 }
 
 #body.boys {
