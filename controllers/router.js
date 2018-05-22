@@ -34,7 +34,7 @@ req.checkBody('user_name', 'Username can only contain letters, numbers, or under
     const errors = req.validationErrors()
     console.log("ERRORS!!!!" + JSON.stringify(errors));
     if(errors){
-        // res.render(path.join(__dirname,'partials/registrationForm'), {errors: errors});
+      
         res.render('./partials/registrationForm', {errors: errors});
     }
     else{
