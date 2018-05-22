@@ -10,8 +10,7 @@ var config = require(__dirname + "/../config/config.js")[env];
 var db = {};
 
 if (process.env.JAWSDB_URL) {
-  var sequelize = new Sequelize(process.env[process.env.JAWSDB_URL],'mysql');
-  sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+  var sequelize = new Sequelize(process.env.JAWSDB_URL, {
     dialect:  'mysql',
     port:     match[4],
     host:     match[3],
