@@ -5,8 +5,6 @@
   width: 200px;
   padding:10px;
 
-  
- 
 }
 
 .navbar {
@@ -27,8 +25,9 @@ body {
     #fee120,
     #ff9e1f 40%
     );
+
     background-repeat:no-repeat;
-background-attachment: fixed;
+    background-attachment: fixed;
 }
 
 .wrapper {
