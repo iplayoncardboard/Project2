@@ -11,9 +11,12 @@ var db = {};
 
 if (process.env.JAWSDB_URL) {
   var sequelize = new Sequelize(process.env.JAWSDB_URL, {
+    username: 'ymsbpotb9m57vbub',
+    password: 'qn5brnwxbepw8f4t',
+    database: 'vkgwji8j1io4bwj2',
     dialect:  'mysql',
-    port:     match[4],
-    host:     match[3],
+    port:     '3306',
+    host:     's0znzigqvfehvff5.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     logging:  true //false
   })
 } else {
