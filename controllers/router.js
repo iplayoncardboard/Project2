@@ -95,6 +95,8 @@ router.post('/login',(req,res)=>{
       }).then((data)=>{
       
           if(!data){
+            res.render('./partials/login',{errors:[{msg:"No user found."}]});
+
               console.log("No User Found");
           }
           else{  bcrypt.compare(req.body.password, data.pw_hash, (err, resp) =>{
@@ -106,7 +108,7 @@ router.post('/login',(req,res)=>{
         });}
             else{
 
-            res.render('./partials/login',{errors:[{msg:"User name and password do not match"}]});
+            res.render('./partials/login',{errors:[{msg:"User name and password do not match."}]});
         }
             
         });
