@@ -4,9 +4,14 @@
 .navbar-brand {
   width: 200px;
   padding:10px;
+
+  
  
 }
 
+.navbar {
+  background: white;
+}
 
 body {
   margin: 0;
@@ -33,7 +38,7 @@ body {
 }
 nav {
   float: right;
-  position: relative
+  position: relative;
 }
 
 #logo {
