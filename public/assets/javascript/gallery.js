@@ -5,16 +5,16 @@ function getFinalLib() {
        
         for (i=0;i<data.length;i++) {
             if (data[i].category_id === 1) {
-                $("#card-title"+i).append("Sleepover Madlib");
+                $("#card-title"+i).append("Sleepover Fadlib");
             }
             if (data[i].category_id === 2) {
-                $("#card-title"+i).append("Baby Shower Madlib");
+                $("#card-title"+i).append("Baby Shower Fadlib");
             }
             if (data[i].category_id === 3) {
-                $("#card-title"+i).append("Camping Madlib");
+                $("#card-title"+i).append("Camping Fadlib");
             }
             if (data[i].category_id === 4) {
-                $("#card-title"+i).append("Bachelorrette / Bridal Madlib");
+                $("#card-title"+i).append("Bachelorrette / Bridal Fadlib");
             }
             // make cards & apped a new "gallery card/div for each length, have a scrolling / something that collapses"
     $("#gallery"+i).append(data[i].phrase_1);
