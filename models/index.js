@@ -11,6 +11,12 @@ var db = {};
 
 if (process.env.JAWSDB_URL) {
   var sequelize = new Sequelize(process.env[process.env.JAWSDB_URL],'mysql');
+  sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+    dialect:  'mysql',
+    port:     match[4],
+    host:     match[3],
+    logging:  true //false
+  })
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
