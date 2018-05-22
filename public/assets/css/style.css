@@ -16,12 +16,12 @@ body {
   color: black;
   
   background-image: url("../images/gen_bkg.png");
-  /* background: radial-gradient(
-    circle at 50% 50%,
+  background: radial-gradient(
+    circle at 50% 25%,
     #fff4b2 10%,
     #fee120,
     #ff9e1f 40%
-    ); */
+    );
 }
 
 .wrapper {

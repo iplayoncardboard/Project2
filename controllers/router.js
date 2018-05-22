@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 
 router.get("/", (req, res) => {
     res.render("index");
-    // console.log(req.user);
+    console.log(req.user);
     console.log(req.isAuthenticated());
 });
 
