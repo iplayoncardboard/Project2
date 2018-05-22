@@ -5,7 +5,8 @@ const saltRounds = 10;
 const router = express.Router();
 const passport = require('passport');
 const bodyParser = require("body-parser");
-
+const expressValidator = require('express-validator');
+const path = require("path");
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -14,17 +15,36 @@ router.get("/", (req, res) => {
 });
 
 router.get('/register', (req, res)=> {
-    res.render("./partials/registrationForm")
-    console.log(req.user);
-    console.log(req.isAuthenticated());
+    res.render('./partials/registrationForm')
+    // console.log(req.user);
+    // console.log(req.isAuthenticated());
 });
 
-router.post('/register', (req, res)=>{
+router.post('/register',(req, res)=>{
+    req.checkBody('user_name', "User Name field cannot be empty").notEmpty();
+    req.checkBody('user_name', 'Username must be between 4-15 characters long.').len(4, 15);
+    req.checkBody('password', 'Password must be between 8-100 characters long.').len(8, 100);
+    req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
+    req.checkBody('password_compare', 'Password must be between 8-100 characters long.').len(8, 100);
+    req.checkBody('password_compare', 'Passwords do not match, please try again.').equals(req.body.password);
+
+// Additional validation to ensure username is alphanumeric with underscores and dashes
+req.checkBody('user_name', 'Username can only contain letters, numbers, or underscores.').matches(/^[A-Za-z0-9_-]+$/, 'i');
+
+    const errors = req.validationErrors()
+    console.log("ERRORS!!!!" + JSON.stringify(errors));
+    if(errors){
+        // res.render(path.join(__dirname,'partials/registrationForm'), {errors: errors});
+        res.render('./partials/registrationForm', {errors: errors});
+    }
+    else{
+    //look for a user name in the DB
     Models.user.findAll({
         where: {
             user_name:req.body.user_name
         }
       }).then((data)=>{
+          //If no duplicate use is found
         if(data.length === 0){
             bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
                 if(err){
@@ -44,17 +64,18 @@ router.post('/register', (req, res)=>{
                         //   console.log("this is the login data: "+ JSON.stringify(data));
                           req.login(data.user_name,(err)=>{
                               if(err) throw err;
-
-                              res.redirect('/');
+                                res.redirect('/');
                           })
                       });
                 });
             });
         }
+        //If duplicate user found
         else {
-            console.log("ERROR USER EXISTS")
+            
+            res.render('./partials/registrationForm',{errors:[{msg: "User exists please pick a unique user name."}]})
         }
-      });
+      });}
 });
 
 router.get('/login',(req,res)=>{

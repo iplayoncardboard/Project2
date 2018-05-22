@@ -12,6 +12,8 @@ const db = require('./models');
 const routes = require("./controllers/router");
 const exphbs = require("express-handlebars");
 const Models = require("./models");
+const expressValidator = require('express-validator');
+
 
 //setup express session
 const app = express();
@@ -23,8 +25,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 
-// Import routes and give the server access to them.
-
+app.use(expressValidator());
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
