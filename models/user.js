@@ -3,6 +3,8 @@ module.exports = function(sequelize, DataTypes) {
       // Giving the Author model a name of type STRING
       user_name: DataTypes.STRING,
       pw_hash: DataTypes.STRING
+    }, {
+      timestamps: true
     });
 
     // User.associate = function(models) {

@@ -17,6 +17,8 @@ module.exports = function(sequelize, DataTypes) {
     word_11: DataTypes.TEXT,
     word_12: DataTypes.TEXT,
     word_13: DataTypes.TEXT
+  }, {
+    timestamps: true
   });
 
   Entries.associate = function(models) {

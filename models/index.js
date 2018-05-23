@@ -22,7 +22,7 @@ if (process.env.JAWSDB_URL) {
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-//casdfdsaf
+
 fs
 //Returns: <string[]> An array of filenames excluding '.' and '..'.
   .readdirSync(__dirname)

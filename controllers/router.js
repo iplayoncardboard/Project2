@@ -101,7 +101,7 @@ router.post('/login',(req,res)=>{
           }
           else{  bcrypt.compare(req.body.password, data.pw_hash, (err, resp) =>{
             // res == true
-            if(resp){      req.login(data.user_name,(err)=>{
+            if(resp){req.login(data.user_name,(err)=>{
                 if(err) throw err;
 
                 res.redirect('/');
